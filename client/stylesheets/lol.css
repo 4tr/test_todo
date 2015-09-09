@@ -1,0 +1,9 @@
+.access-denied::before {
+  content: "";
+  display:block;
+  position:relative;
+  margin: -95px auto -45px auto;
+  width:463px;
+  height:248px;
+  background-image: url("/cat.png");
+}

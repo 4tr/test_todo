@@ -1,0 +1,34 @@
+<template name="todoIndex">
+  <button class="btn {{#if all}}btn-primary{{/if}} btn-default " name="sort" value="all">Все</button>
+  <button class="btn {{#if new}}btn-primary{{/if}} btn-default" name="sort" value="new">Непрочтенные</button>
+  <button class="btn {{#if read}}btn-primary{{/if}} btn-default" name="sort" value="read">Прочтенные</button>
+  <button class="btn {{#if hide}}btn-primary{{/if}} btn-default" name="sort" value="hide">Скрытые</button>
+  <button class="btn btn-default" name="sort" value="remove_hide">Удалить скрытые</button>
+    <p class="bg-info"><form name="todoForm"><input class="form-control" type="text" name="newItem" id="newItem" placeholder="новая задача"></form></p>
+      {{#each items}}
+      {{> todoIndexItem}}
+      {{/each}}
+
+</template>
+
+
+<template name="todoIndexItem">
+  <p class="{{#if hidden}}info{{/if}}" >
+    <div class="btn-group ">
+    <button type="button" class="btn btn-default" name="remove">удалить</button>
+    {{#if hidden}}{{else}}<button type="button" class="btn btn-default" name="hide">скрыть</button>{{/if}}
+    <a name="goToHell"> {{title}}{{#if info}}  <label style="color:gray;font-size:10px;"> {{info}}</label>{{/if}}</a>
+</div>
+</p>
+</template>
+
+
+<template name="todoItem">
+  <h1>{{item.title}}</h1>
+  <form>
+    <textarea placeholder="описание той фигне что описана выше" name="info">{{item.info}}</textarea>
+    <button type="submit">сохранить </button>
+  </form>
+  <a href="{{pathFor "todoAll"}}"><button >свалить обратно</button></a>
+
+</template>
