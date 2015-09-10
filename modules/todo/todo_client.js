@@ -1,6 +1,6 @@
 if (Meteor.isClient) {
   Session.setDefault('nowPage', 'all');
-///////////////
+
 
 Template.todoItem.helpers({
   item: function(){
@@ -39,10 +39,10 @@ Template.todoIndexItem.events({
     });
     Template.todoIndex.helpers({
       items: function() {return todo.find();},
-      all: function(){ return Session.get('nowPage') == "all";},
-      read: function(){return Session.get('nowPage') == "read";},
-      hide: function(){return Session.get('nowPage') == "hide";},
-      new: function(){ return Session.get('nowPage') == "new";}
+      all: function() {return Session.equals('nowPage', 'all');},
+      read: function(){return Session.equals('nowPage', 'read');},
+      hide: function(){return Session.equals('nowPage', 'hide');},
+      new: function() {return Session.equals('nowPage', 'new');}
     });
 
     Template.todoIndexItem.events({
@@ -85,7 +85,6 @@ Template.todoIndexItem.events({
             data : 'new'
           };
           todo.insert(insert);
-          //alert('сукабля');
           $("input[name=newItem]").val("");
           //e.getElementById("newItem").value = '';
         });
